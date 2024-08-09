@@ -77,3 +77,6 @@ DerivedDataCache/*
 # Ignore Asset and Content folders since we aren't using Git-LFS
 Assets/
 Content/
+
+# Ignore third-party plugins
+Plugins/

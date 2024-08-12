@@ -2,10 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "InputActionValue.h"
 #include "BlasterCharacter.generated.h"
 
 class USpringArmComponent;
 class UCameraComponent;
+class UInputAction;
+class UInputMappingContext;
 
 UCLASS()
 class BLASTER_API ABlasterCharacter : public ACharacter
@@ -20,7 +23,24 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, Category = Input)
+	UInputMappingContext* InputMappingContext;
+
+	UPROPERTY(EditAnywhere, Category = Input)
+	UInputAction* JumpAction;
+
+	UPROPERTY(EditAnywhere, Category = Input)
+	UInputAction* LookAction;
+
+	UPROPERTY(EditAnywhere, Category = Input)
+	UInputAction* MoveAction;
+
 private:
+
+	// Input callbacks
+	void Look(const FInputActionValue& Value);
+	void Move(const FInputActionValue& Value);
+
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	USpringArmComponent* CameraBoom;
 
